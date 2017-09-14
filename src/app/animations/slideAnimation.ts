@@ -1,13 +1,19 @@
 import { animation, transition, animate, trigger, style, state } from '@angular/animations';
 
-const slideRightVoidState = state('void', style({ transform: 'translateX(-20px)' }));
-const defaultState = state('*', style({ transform: 'translateX(0px)' }));
+const startStyle = style({ transform: 'translateX(-10px)' });
+const defaultStyle = style({ transform: 'translateX(0px)' });
+const endStyle = style({ transform: 'translateX(-100%)' });
 
-export const slideRightAnimationMetadata = transition(':enter, :leave', animate(500));
+const slideRightStartState = state('void', startStyle);
+const slideRightDefaultState = state('*', defaultStyle);
+
+export const slideRightAnimationEnter = transition(':enter', animate(500));
+export const slideRightAnimationLeave = transition(':leave', animate(500, endStyle));
 
 export const slideRightAnimation = trigger('slideRightAnimation', [
-    slideRightVoidState,
-    defaultState,
-    slideRightAnimationMetadata
+    slideRightStartState,
+    slideRightDefaultState,
+    slideRightAnimationEnter,
+    slideRightAnimationLeave
 ]);
 
