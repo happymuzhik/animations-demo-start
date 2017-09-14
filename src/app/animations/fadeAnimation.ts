@@ -1,10 +1,10 @@
-import { animation, transition, animate, trigger } from '@angular/animations';
+import { animation, transition, animate, trigger, style, state } from '@angular/animations';
 
-export const fadeAnimationMetadata = animation([
-    transition(':enter, :leave', animate(2000))
-])
+const voidState = state('void', style({ opacity: 0 }));
 
-export const fadeAnimation = trigger('fadeAnimation', [fadeAnimationMetadata])
+export const fadeAnimationMetadata = transition(':enter, :leave', animate(1000));
 
-
-
+export const fadeAnimation = trigger('fadeAnimation', [
+    voidState,
+    fadeAnimationMetadata
+]);
